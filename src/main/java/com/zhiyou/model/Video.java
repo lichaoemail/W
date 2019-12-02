@@ -1,14 +1,21 @@
 package com.zhiyou.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Video {
-	private Integer id;
-	private String accounts;
-	private Integer phone;
-	private String password;
-	private String nickname;
-	private String birthday;
-	private String address;
-	private String imgurl;
-	private String createtime;
+	private Integer video_id;
+	private String title;
+	private Integer detail;
+	private String time;
+	private String speaker_id;
+	private String course_id;
+	private String video_url;
+	private String image_url;
+	private String play_num;
 	
 }

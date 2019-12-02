@@ -5,23 +5,26 @@
 <!-- namespace: 代表这个文件的命名空间,根据这个名称可以定位到这个文件 -->
 <mapper namespace="com.zhiyou.mapper.UserMapper">
 	<resultMap type="user" id="userMap">
-		<id column="a_id" property="id"/>
-		<result column="a_name" property="name"/>
-		<result column="a_age" property="age"/>
-		<result column="username" property="username"/>
+		<id column="id" property="id"/>
+		<result column="accounts" property="accounts"/>
+		<result column="phone" property="phone"/>
 		<result column="password" property="password"/>
-		<result column="sex" property="sex"/>
+		<result column="nickname" property="nickname"/>
+		<result column=birthday property="birthday"/>
+		<result column="address" property="address"/>
+		<result column="imgurl" property="imgurl"/>
+		<result column="createtime" property="createtime"/>
 	</resultMap>
 	
 	<insert id="add" parameterType="user">
-		insert into user values(#{id},#{name},#{age},#{sex},#{username},#{password});
+		insert into user values(#{id},#{accounts},#{phone},#{password},#{nickname},#{birthday},#{address},#{imgurl},#{createtime});
 	</insert>
 
 	<delete id="delete">
-		delete from user where a_id=#{rdgjdfhgdfhg};	
+		delete from user where id=#{rdgjdfhgdfhg};	
 	</delete>
 
-	 <update id="update" parameterType="user">	
+	 <update id="update" parameterType="user">  
 		 
 		update user  
 			<set>		
