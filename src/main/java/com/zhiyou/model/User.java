@@ -1,5 +1,7 @@
 package com.zhiyou.model;
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,7 @@ public class User {
 	private String birthday;
 	private String address;
 	private String imgurl;
-	private String createtime;
+	private Timestamp createtime;
 	public Integer getId() {
 		return id;
 	}
@@ -65,14 +67,14 @@ public class User {
 	public void setImgurl(String imgurl) {
 		this.imgurl = imgurl;
 	}
-	public String getCreatetime() {
+	public Timestamp getCreatetime() {
 		return createtime;
 	}
-	public void setCreatetime(String createtime) {
+	public void setCreatetime(Timestamp createtime) {
 		this.createtime = createtime;
 	}
 	public User(Integer id, String accounts, Integer phone, String password, String nickname, String birthday,
-			String address, String imgurl, String createtime) {
+			String address, String imgurl, Timestamp createtime) {
 		super();
 		this.id = id;
 		this.accounts = accounts;
