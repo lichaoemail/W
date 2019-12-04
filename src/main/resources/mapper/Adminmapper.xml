@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace: 代表这个文件的命名空间,根据这个名称可以定位到这个文件 -->
+<mapper namespace="com.zhiyou.mapper.AdminMapper">
+	<resultMap type="admin" id="adminMap">
+		<id column="admin_id" property="admin_id"/>
+		<result column="accounts" property="accounts"/>
+		<result column="password" property="password"/>
+		<result column="admin_remark" property="admin_remark"/>
+	</resultMap>
+	
+	<insert id="add" parameterType="admin">
+		insert into admin values(#{admin_id},#{accounts},#{password},#{admin_remark});
+	</insert>
+
+	<delete id="delete">
+		delete from admin where id=#{dangesuiyixie};	
+	</delete>
+
+	 <update id="update" parameterType="admin">  
+	 
+		update admin  
+			<set>		
+					<if test="accounts!=null">
+						accounts=#{accounts},
+					</if>
+					<if test="password!=null">
+						password=#{password},
+					</if>	
+					<if test="admin_remark!=null">
+						admin_remark=#{admin_remark},
+					</if>
+				</set>	
+			where admin_id=#{admin_id}	
+		
+	</update> 
+	
+
+	<select id="selectAll" resultMap="adminMap" >
+		select * from admin
+	</select>
+	
+	<select id="selectByID" resultMap="adminMap">
+		select * from admin where id=#{123}
+	</select>
+	
+	
+	<!-- 模糊查询 -->
+	<select id="selectLike" resultMap="adminMap" parameterType="admin">
+		<include refid="as"/>
+	</select>
+	<sql id="as">
+		select * from admin 
+		<trim prefix="where" prefixOverrides="and|or|abcd" suffixOverrides="qwer">
+			<if test="admin_id!=0">
+				admin_id like concat('%',#{admin_id},'%')
+			</if>
+			<if test="accounts!=null">
+				 accounts like concat('%',#{accounts},'%')
+			</if>
+			<if test="password!=null">
+				and	password like concat('%',#{password},'%')
+			</if>
+			<if test="admin_remark!=null">
+				and	admin_remark like concat('%',#{admin_remark},'%')
+			</if>
+		</trim>
+	</sql>
+    
+    
+	<!-- 批量删除 -->
+	<delete id="deleteAll">
+		delete from admin where admin_id in
+		<foreach open="("  collection="array" item="admin_id " index="i" separator="," close=")"> 
+			#{admin_id}
+		</foreach>
+	</delete>
+</mapper>
