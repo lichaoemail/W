@@ -34,7 +34,7 @@ public class SpeakerController {
 	
 	@RequestMapping("selectByID")
 	public String selectByID(int id,HttpServletRequest req,HttpServletResponse rep) {
-		req.setAttribute("user", service.selectByID(id));
+		req.setAttribute("user", service.selectById(id));
 		return "update";
 	}
 	

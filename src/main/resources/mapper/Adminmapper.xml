@@ -11,6 +11,13 @@
 		<result column="admin_remark" property="admin_remark"/>
 	</resultMap>
 	
+	<!-- 根据accounts查询 所有的admin-->
+	<select id="selectByAccounts" resultType="admin">
+		select * from admin where accounts = #{accounts}
+	</select>
+	
+	
+	
 	<insert id="add" parameterType="admin">
 		insert into admin values(#{admin_id},#{accounts},#{password},#{admin_remark});
 	</insert>
@@ -61,7 +68,7 @@
 				 accounts like concat('%',#{accounts},'%')
 			</if>
 			<if test="password!=null">
-				and	password like concat('%',#{password},'%')
+				and	password like concat('%',#{password},')
 			</if>
 			<if test="admin_remark!=null">
 				and	admin_remark like concat('%',#{admin_remark},'%')

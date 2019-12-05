@@ -86,8 +86,12 @@ public class User {
 		this.imgurl = imgurl;
 		this.createtime = createtime;
 	}
-	public User() {
+	public User(Object object, String email, Object object2, String password2, Object object3, Object object4, Object object5, Object object6, Object object7, Object object8) {
 		super();
+	}
+	public User(int id2, Object email, Object object2, Object password2, Object object3, Object object4, Object object5,
+			Object object6, String imgurl2, Object object8) {
+		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
