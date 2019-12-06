@@ -3,15 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace: 代表这个文件的命名空间,根据这个名称可以定位到这个文件 -->
-<mapper namespace="com.zhiyou.mapper.CourseMapper">
-	<resultMap type="course" id="courseMap">
+<mapper namespace="com.zhiyou.mapper.SpeakerMapper">
+	<resultMap type=speaker id="speakerMap">
 		<id column="id" property="id"/>
-		<result column="course_title" property="course_title"/>
-		<result column="course_desc" property="course_desc"/>
-		<result column="subject_id" property="subject_id"/>
+		<result column="speaker_name" property="speaker_name"/>
+		<result column="speaker_desc" property="speaker_desc"/>
+		<result column="speaker_job" property="speaker_job"/>
+		<result column="pic_url" property="pic_url"/>
 	</resultMap>
-		
-	<insert id="add" parameterType="course">
+
+	<insert id="add" parameterType="speaker">
 		insert into course values(#{id},#{course_title},#{course_desc},#{subject_id});
 	</insert>
 
@@ -19,37 +20,40 @@
 		delete from course where id=#{dangesuiyixie};	
 	</delete>
 
-	 <update id="update" parameterType="course">  
+	 <update id="update" parameterType="speaker">  
 	 
 		update course  
 			<set>		
-					<if test="course_title!=null">
-						course_title=#{course_title},
+					<if test="speaker_name!=null">
+						speaker_name=#{speaker_name},
 					</if>
-					<if test="course_desc!=null">
-						course_desc=#{course_desc},
+					<if test="speaker_desc!=null">
+						speaker_desc=#{speaker_desc},
 					</if>
-					<if test="subject_id!=0">
-						subject_id=#{subject_id},
-					</if>	
+					<if test="speaker_job!=null">
+						speaker_job=#{speaker_job},
+					</if>
+					<if test="pic_url!=null">
+						pic_url=#{pic_url},
+					</if>
+						
 				</set>	
 			where id=#{id}	
 		
 	</update> 
 	
 
-
-	<select id="selectAll" resultMap="courseMap" >
+	<select id="selectAll" resultMap="speakerMap" >
 		select * from course
 	</select>
 	
-	<select id="selectByID" resultMap="courseMap">
+	<select id="selectByID" resultMap="speakerMap">
 		select * from course where id=#{123}
 	</select>
 	
 	
 	<!-- 模糊查询 -->
-	<select id="selectLike" resultMap="courseMap" parameterType="course">
+	<select id="selectLike" resultMap="speakerMap" parameterType="speaker">
 		<include refid="as"/>
 	</select>
 	<sql id="as">
@@ -58,19 +62,22 @@
 			<if test="id!=0">
 				id like concat('%',#{id},'%')
 			</if>
-			<if test="course_title!=null">
-				 course_title like concat('%',#{course_title},'%')
+			<if test="speaker_name!=null">
+				 speaker_name like concat('%',#{speaker_name},'%')
 			</if>
-			<if test="course_desc!=null">
-				 course_desc like concat('%',#{course_desc},'%')
+			<if test="speaker_desc!=null">
+				 speaker_desc like concat('%',#{speaker_desc},'%')
 			</if>
-			<if test="subject_id!=0">
-				and	subject_id like concat('%',#{subject_id},'%')
+			<if test="sspeaker_job!=null">
+				 speaker_job like concat('%',#{speaker_job},'%')
+			</if>
+			<if test="pic_url!=null">
+				 pic_url like concat('%',#{pic_url},'%')
 			</if>
 		 		qwer
 		</trim>
 	</sql>
- 
+
  
   
 	<!-- 批量删除 -->
